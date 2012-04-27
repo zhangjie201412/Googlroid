@@ -121,9 +121,10 @@ public final class Launcher extends Activity
     private static final int REQUEST_PICK_WALLPAPER = 10;
 
     static final String EXTRA_SHORTCUT_DUPLICATE = "duplicate";
-
-    static final int SCREEN_COUNT = 5;
-    static final int DEFAULT_SCREEN = 2;
+//++++modify by Jay set screen count to 1
+    static final int SCREEN_COUNT = 1;
+    static final int DEFAULT_SCREEN = 0;
+//-------end 
     static final int NUMBER_CELLS_X = 4;
     static final int NUMBER_CELLS_Y = 4;
 
