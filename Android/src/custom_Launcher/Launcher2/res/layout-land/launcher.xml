@@ -41,7 +41,7 @@
 -->
     </com.android.launcher2.Workspace>
 
-    <com.android.launcher2.ClippedImageView
+    <ImageView
         android:id="@+id/previous_screen"
         android:layout_width="93dip"
         android:layout_height="@dimen/button_bar_height"
@@ -53,12 +53,11 @@
         
         android:onClick="previousScreen"
 
-        launcher:ignoreZone="56dip"
 
         android:focusable="true"
         android:clickable="true" />
 
-    <com.android.launcher2.ClippedImageView
+    <ImageView
         android:id="@+id/next_screen"
         android:layout_width="93dip"
         android:layout_height="@dimen/button_bar_height"
@@ -70,7 +69,6 @@
         
         android:onClick="nextScreen"
         
-        launcher:ignoreZone="-56dip"
         
         android:focusable="true"
         android:clickable="true" />
@@ -91,41 +89,78 @@
 
     <RelativeLayout
         android:id="@+id/all_apps_button_cluster"
-        android:layout_height="fill_parent"
-        android:layout_width="@dimen/button_bar_height_portrait"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginBottom="@dimen/half_status_bar_height"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_bar_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingTop="2dip"
         >
 
+<!--
         <com.android.launcher2.HandleView
             style="@style/HotseatButton"
             android:id="@+id/all_apps_button"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:src="@drawable/all_apps_button"
-            launcher:direction="vertical"
+            launcher:direction="horizontal"            
+	/>
+by Jay -->
+
+
+    </RelativeLayout>
+<!--add by Jay-->
+<com.android.launcher2.DockBar
+        android:id="@+id/dockbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_bar_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/dock_bg"
+        launcher:direction="horizontal">
+        <HorizontalScrollView android:id="@+id/dock_scroll_view" 
+        android:scrollbars="none" 
+        android:fadingEdge="none" 
+        android:saveEnabled="false" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent">
+        <LinearLayout android:orientation="horizontal" 
+        android:id="@+id/dock_item_holder"      
+        android:saveEnabled="false" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent">
+         <com.android.launcher2.HandleView
+            android:id="@+id/all_apps_button"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/all_apps_button"
+            launcher:direction="horizontal"        
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:clickable="true"
             />
 
         <ImageView
             android:id="@+id/hotseat_left"
             style="@style/HotseatButton.Left"
-            android:layout_below="@id/all_apps_button"
+            android:layout_toLeftOf="@id/all_apps_button"
 
             android:src="@drawable/hotseat_phone"
 
             android:onClick="launchHotSeat"
+		android:visibility="invisible"
             />
 
         <ImageView
             android:id="@+id/hotseat_right"
             style="@style/HotseatButton.Right"
-            android:layout_above="@id/all_apps_button"
+            android:layout_toRightOf="@id/all_apps_button"
 
             android:src="@drawable/hotseat_browser"
 
             android:onClick="launchHotSeat"
+		android:visibility="invisible"
             />
 
-    </RelativeLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+</com.android.launcher2.DockBar>
 </com.android.launcher2.DragLayer>

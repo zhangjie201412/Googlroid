@@ -29,6 +29,8 @@
         android:id="@+id/workspace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="horizontal"
+        android:fadeScrollbars="true"
         launcher:defaultScreen="0">
 
         <include android:id="@+id/cell1" layout="@layout/workspace_screen" />
@@ -36,7 +38,7 @@
         <include android:id="@+id/cell3" layout="@layout/workspace_screen" />
         <include android:id="@+id/cell4" layout="@layout/workspace_screen" />
         <include android:id="@+id/cell5" layout="@layout/workspace_screen" />
--->                
+-->
     </com.android.launcher2.Workspace>
 
     <ImageView
@@ -51,6 +53,7 @@
         
         android:onClick="previousScreen"
 
+
         android:focusable="true"
         android:clickable="true" />
 
@@ -63,9 +66,10 @@
 
         android:scaleType="center"
         android:src="@drawable/home_arrows_right"
-
+        
         android:onClick="nextScreen"
-
+        
+        
         android:focusable="true"
         android:clickable="true" />
 
@@ -73,13 +77,14 @@
         android:id="@+id/delete_zone"
         android:layout_width="@dimen/delete_zone_size"
         android:layout_height="@dimen/delete_zone_size"
-        android:paddingTop="@dimen/delete_zone_padding"
-        android:layout_gravity="bottom|center_horizontal"
+        android:paddingLeft="@dimen/delete_zone_padding"
+        android:layout_marginBottom="@dimen/half_status_bar_height"
+        android:layout_gravity="right|center_vertical"
 
         android:scaleType="center"
         android:src="@drawable/delete_zone_selector"
         android:visibility="invisible"
-        launcher:direction="horizontal"
+        launcher:direction="vertical"
         />
 
     <RelativeLayout
@@ -90,14 +95,48 @@
         android:paddingTop="2dip"
         >
 
+<!--
         <com.android.launcher2.HandleView
             style="@style/HotseatButton"
             android:id="@+id/all_apps_button"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-
             android:src="@drawable/all_apps_button"
-            launcher:direction="horizontal"
+            launcher:direction="horizontal"            
+	/>
+by Jay -->
+
+
+
+    </RelativeLayout>
+<!--add by Jay-->
+<com.android.launcher2.DockBar
+        android:id="@+id/dockbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_bar_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/dock_bg"
+        launcher:direction="horizontal">
+        <HorizontalScrollView android:id="@+id/dock_scroll_view" 
+        android:scrollbars="none" 
+        android:fadingEdge="none" 
+        android:saveEnabled="false" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent">
+        <LinearLayout android:orientation="horizontal" 
+        android:id="@+id/dock_item_holder"      
+        android:saveEnabled="false" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent">
+         <com.android.launcher2.HandleView
+            android:id="@+id/all_apps_button"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/all_apps_button"
+            launcher:direction="horizontal"        
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:clickable="true"
             />
 
         <ImageView
@@ -108,6 +147,7 @@
             android:src="@drawable/hotseat_phone"
 
             android:onClick="launchHotSeat"
+		android:visibility="invisible"
             />
 
         <ImageView
@@ -118,8 +158,11 @@
             android:src="@drawable/hotseat_browser"
 
             android:onClick="launchHotSeat"
+		android:visibility="invisible"
             />
 
-    </RelativeLayout>
-
+        </LinearLayout>
+    </HorizontalScrollView>
+</com.android.launcher2.DockBar>
 </com.android.launcher2.DragLayer>
+

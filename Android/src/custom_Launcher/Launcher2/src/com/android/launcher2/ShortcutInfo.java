@@ -62,8 +62,10 @@ class ShortcutInfo extends ItemInfo {
     /**
      * The application icon.
      */
-    private Bitmap mIcon;
-
+//    private Bitmap mIcon;
+//++++by jay
+	Bitmap mIcon;
+//----
     ShortcutInfo() {
         itemType = LauncherSettings.BaseLauncherColumns.ITEM_TYPE_SHORTCUT;
     }
@@ -87,6 +89,9 @@ class ShortcutInfo extends ItemInfo {
         title = info.title.toString();
         intent = new Intent(info.intent);
         customIcon = false;
+//+++++add by Jay
+	mIcon = info.iconBitmap;
+//-----
     }
 
     public void setIcon(Bitmap b) {
