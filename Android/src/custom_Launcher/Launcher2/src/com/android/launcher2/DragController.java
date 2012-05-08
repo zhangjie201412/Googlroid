@@ -106,9 +106,10 @@ public class DragController {
     private ArrayList<DropTarget> mDropTargets = new ArrayList<DropTarget>();
 
     private DragListener mListener;
-//++++add by Jay
-	private DragListener mDockListener;
-	//---
+//++++++
+    private DragListener mDockListener;
+//---
+
     /** The window token used as the parent for the DragView. */
     private IBinder mWindowToken;
 
@@ -225,11 +226,11 @@ public class DragController {
         if (mListener != null) {
             mListener.onDragStart(source, dragInfo, dragAction);
         }
-	//++++add by Jay
-	if(mDockListener != null) {
-		mDockListener.onDragStart(source, dragInfo, dragAction);
-	}
-	//----
+//++++++
+        if (mDockListener != null) {
+            mDockListener.onDragStart(source, dragInfo, dragAction);
+        }
+//-----
 
         int registrationX = ((int)mMotionDownX) - screenX;
         int registrationY = ((int)mMotionDownY) - screenY;
@@ -554,15 +555,21 @@ public class DragController {
     public void removeDragListener(DragListener l) {
         mListener = null;
     }
-//+++++add by Jay
-    //hmg25 add for dock {
+//+++++++
+    /**
+     * Sets the drag listner which will be notified when a drag starts or ends.
+     */
     public void setDockDragListener(DragListener l) {
-	mDockListener = l;
-    }  
-    public void removeDockDragListener(DragListener l) {
-	mDockListener = null;
+        mDockListener = l;
     }
-//-----
+
+    /**
+     * Remove a previously installed drag listener.
+     */
+    public void removeDockDragListener(DragListener l) {
+        mDockListener = null;
+    }
+//-------
     /**
      * Add a DropTarget to the list of potential places to receive drop events.
      */

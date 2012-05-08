@@ -79,9 +79,8 @@ class ApplicationInfo extends ItemInfo {
         componentName = info.componentName;
         title = info.title.toString();
         intent = new Intent(info.intent);
-//++++add by Jay
+//+++++
 	iconBitmap = info.iconBitmap;
-//----
     }
 
     /**

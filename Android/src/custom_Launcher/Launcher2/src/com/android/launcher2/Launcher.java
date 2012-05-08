@@ -86,9 +86,11 @@ import java.io.IOException;
 import java.io.DataInputStream;
 
 import com.android.launcher.R;
-//++++add by Jay
+//+++++
 import com.android.launcher2.DockBar;
 import com.android.launcher2.ShortcutInfo;
+//-----
+
 /**
  * Default launcher application.
  */
@@ -123,10 +125,9 @@ public final class Launcher extends Activity
     private static final int REQUEST_PICK_WALLPAPER = 10;
 
     static final String EXTRA_SHORTCUT_DUPLICATE = "duplicate";
-//++++modify by Jay set screen count to 1
+
     static final int SCREEN_COUNT = 1;
     static final int DEFAULT_SCREEN = 0;
-//-------end 
     static final int NUMBER_CELLS_X = 4;
     static final int NUMBER_CELLS_Y = 4;
 
@@ -211,10 +212,10 @@ public final class Launcher extends Activity
 
     private ImageView mPreviousView;
     private ImageView mNextView;
+//+++++
+	private DockBar dockbar;
+//----
 
-    //++++add by Jay
-    private DockBar dockbar;
-    //-----
     // Hotseats (quick-launch icons next to AllApps)
     private static final int NUM_HOTSEATS = 2;
     private String[] mHotseatConfig = null;
@@ -773,30 +774,31 @@ public final class Launcher extends Activity
         workspace.setOnLongClickListener(this);
         workspace.setDragController(dragController);
         workspace.setLauncher(this);
-	//++++add by Jay
-	dockbar=(DockBar)dragLayer.findViewById(R.id.dockbar);
+//+++++++
+	dockbar = (DockBar)dragLayer.findViewById(R.id.dockbar);
 	if(dockbar == null)
-		Log.e(TAG, "none error!!!" );
-        dockbar.setLauncher(this); 
-        dockbar.setDragController(dragController);      
-	//----
+		Log.e(TAG, "dock find id error --> none point!!");
+	dockbar.setLauncher(this);
+	dockbar.setDragController(dragController);
+//------
+
         deleteZone.setLauncher(this);
         deleteZone.setDragController(dragController);
         deleteZone.setHandle(findViewById(R.id.all_apps_button_cluster));
 
         dragController.setDragScoller(workspace);
         dragController.setDragListener(deleteZone);
-	//++++add by Jay
+//+++++++
 	dragController.setDockDragListener(dockbar);
-	//-----
+//------
         dragController.setScrollView(dragLayer);
         dragController.setMoveTarget(workspace);
 
         // The order here is bottom to top.
         dragController.addDropTarget(workspace);
-	//+++++add by Jay
+//++++++
 	dragController.addDropTarget(dockbar);
-	//-----
+//------
         dragController.addDropTarget(deleteZone);
     }
 
